@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function Machine({ bank, setActualSound }) {
+export default function Machine({ bank, setActualSound, powered, volume }) {
   useEffect(() => {
     document.addEventListener("keydown", pressedKey);
     return () => {
@@ -10,16 +10,15 @@ export default function Machine({ bank, setActualSound }) {
   }, []);
 
   const playAudio = () => {
-    const theAudio = document.getElementById(bank.keyTrigger);
-    const display = document.querySelector("#displaySound");
-    theAudio.currentTime = 0;
-    theAudio.play();
-    setActualSound(bank.id);
-    display.classList.toggle("exit");
-    // setInterval(() => {
-    //   // setActualSound("");
-    //   display.classList.toggle("exit");
-    // }, 1000);
+    if (powered) {
+      const audio = document.getElementById(bank.keyTrigger);
+      const display = document.querySelector("#displaySound");
+      audio.currentTime = 0;
+      audio.volume = volume;
+      audio.play();
+      setActualSound(bank.id);
+      display.classList.toggle("exit");
+    }
   };
 
   const pressedKey = (e) => {
@@ -30,7 +29,7 @@ export default function Machine({ bank, setActualSound }) {
 
   return (
     <button
-      className="drum-pad"
+      className={powered ? "drum-pad" : "drum-pad off"}
       id={bank.id}
       onClick={playAudio}
       onKeyPress={pressedKey(bank.keyCode)}

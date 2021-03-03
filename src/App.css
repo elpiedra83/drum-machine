@@ -2,17 +2,15 @@ h1 {
   color: #fff;
   border-bottom: 6px solid #fff;
   width: 45vw;
-  margin-left: 1rem;
 }
 
 #display {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin: 1rem;
 }
 
-button {
+.drum-pad {
   padding: 1rem;
   background-color: #333;
   color: #eee;
@@ -22,17 +20,28 @@ button {
   outline: none;
 }
 
-button:hover {
+.drum-pad:hover {
   background-color: #fff;
   color: #333;
   border: 2px solid #333;
 }
 
-#monitor {
+.drum-pad.off {
+  background-color: #ccc;
+  color: #111;
+}
+
+.drum-pad.off:hover {
+  background-color: #ccc;
+  color: #111;
+  border-color: #ccc;
+}
+
+.monitor {
   background-color: #1aa2a7;
   color: #fff;
   font-size: 5rem;
-  margin: 1rem;
+  margin: 1rem 0;
   height: 2em;
   display: flex;
   align-items: center;
@@ -40,6 +49,10 @@ button:hover {
   border-radius: 10px;
   font-family: monospace;
   overflow: hidden;
+}
+
+.monitor.off {
+  background-color: #ccc;
 }
 
 .displaySound {
@@ -65,4 +78,118 @@ button:hover {
   100% {
     transform: translateX(100%);
   }
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#powerContainer {
+  display: grid;
+  justify-content: end;
+}
+
+#volumeContainer {
+  display: grid;
+  align-items: center;
+}
+
+.soundsSet {
+  display: grid;
+  justify-content: end;
+  grid-template-columns: auto auto;
+}
+
+.set {
+  background-color: #2196f3;
+  padding: 0.4rem;
+  color: #eee;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 0.8rem;
+  outline: none;
+  margin: 1rem 0;
+  margin-right: -1rem;
+  width: 6rem;
+  font-weight: 200;
+  transition: 0.5s ease;
+}
+
+.set:hover,
+.set:focus,
+.set:active {
+  background-color: #165588;
+  border-color: #2196f3;
+  font-weight: 600;
+}
+
+.set.off {
+  background-color: #ccc;
+  color: #111;
+}
+
+.set.off:hover {
+  background-color: #ccc;
+  color: #111;
+  border-color: #ccc;
+  font-weight: 400;
 }
